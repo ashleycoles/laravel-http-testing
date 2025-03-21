@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             // the factory of the relation
             // Now when we use the product factory, it will automatically make its
             // own category
-            'category_id' => Category::factory()
+            'category_id' => Category::factory(),
         ];
     }
 }

@@ -5,8 +5,6 @@ namespace Tests\Feature;
 use App\Models\Colour;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -14,7 +12,7 @@ class ProductTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function test_getAllProducts_noFilters(): void
+    public function test_get_all_products_no_filters(): void
     {
         Product::factory()
             ->count(2)
@@ -39,7 +37,7 @@ class ProductTest extends TestCase
             });
     }
 
-    public function test_getAllProducts_stockFilter(): void
+    public function test_get_all_products_stock_filter(): void
     {
         $inStockProduct = Product::factory()->create();
         $inStockProduct->stock = 10;
@@ -58,7 +56,7 @@ class ProductTest extends TestCase
             });
     }
 
-    public function test_getAllProducts_withSearch(): void
+    public function test_get_all_products_with_search(): void
     {
         $searchProduct = Product::factory()->create();
         $searchProduct->name = 'Hello World';
@@ -77,7 +75,7 @@ class ProductTest extends TestCase
             });
     }
 
-    public function test_getAllProducts_withSearchAndStockFilter(): void
+    public function test_get_all_products_with_search_and_stock_filter(): void
     {
         $searchProduct = Product::factory()->create();
         $searchProduct->name = 'Hello World';
@@ -103,7 +101,7 @@ class ProductTest extends TestCase
             });
     }
 
-    public function test_getAllProducts_invalidStockFilter(): void
+    public function test_get_all_products_invalid_stock_filter(): void
     {
         $response = $this->getJson('/api/products?instock=hi');
 

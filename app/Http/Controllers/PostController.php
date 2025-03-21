@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -38,16 +39,8 @@ class PostController extends Controller
         return view('addPost');
     }
 
-    public function create(Request $request)
+    public function create(CreatePostRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|min:2|max:70',
-            'content' => 'required|string|min:50',
-            'image' => 'nullable|string|url|max:255',
-            'excerpt' => 'required|string|min:10|max:300',
-            'author' => 'required|string|min:2|max:255',
-        ]);
-
         $newPost = new Post;
 
         $newPost->title = $request->title;
